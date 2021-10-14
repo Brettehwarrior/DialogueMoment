@@ -757,8 +757,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1946429075}
-  - component: {fileID: 1946429076}
   - component: {fileID: 1946429077}
+  - component: {fileID: 1946429076}
+  - component: {fileID: 1946429079}
   - component: {fileID: 1946429078}
   m_Layer: 5
   m_Name: DialogueBox
@@ -800,15 +801,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1052891998}
-  messages:
-  - hey gutys its me funny joe
-  - my wife is a really good friend
-  - <b>please don't tell her
-  - so when you're having a trouble just think of a <#0F0>blue <#FFF>stop sighn
-  - undertale is a <size=200%>good</size> game
+  dialogue: {fileID: 11400000, guid: 75bf450c6ec82f9499513b114c086dcf, type: 2}
   characterDelay: 0.03
-  talkSound: {fileID: 8300000, guid: 5cef1d9710095544d927c1ef4dcc0b0d, type: 3}
-  soundDelay: 0.08
+  dialogueAudio: {fileID: 1946429079}
 --- !u!222 &1946429077
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -913,3 +908,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1946429079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946429074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a35a2b3f8f1c25a4699adffec1ce914b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 11400000, guid: 75bf450c6ec82f9499513b114c086dcf, type: 2}
+  soundDelay: 0.05

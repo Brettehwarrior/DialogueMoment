@@ -6,7 +6,8 @@ using UnityEngine;
 public class DialogueAudio : MonoBehaviour
 {
     [SerializeField]
-    private AudioClip[] talkSounds;
+    private Dialogue dialogue;
+    
     [SerializeField]
     private float soundDelay;
 
@@ -28,7 +29,7 @@ public class DialogueAudio : MonoBehaviour
 
     private IEnumerator PlaySounds() {
         yield return new WaitForSeconds(soundDelay);
-        audioSource.PlayOneShot(talkSounds[Random.Range(0, talkSounds.Length)]);
+        audioSource.PlayOneShot(dialogue.talkSounds[Random.Range(0, dialogue.talkSounds.Length)]);
         StartSounds();
     }
 }

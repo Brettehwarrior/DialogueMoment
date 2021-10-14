@@ -1,20 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 
 
 // Hey Trent check this out this is what you want probably: https://github.com/mixandjam/AC-Dialogue/blob/master/Assets/TMP_Animated/Runtime/TMP_Animated.cs
 
-[RequireComponent(typeof(AudioSource))]
+
 public class ScrollText : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI text;
 
     [SerializeField]
-    [TextArea(4,4)]
-    private string[] messages;
+    private Dialogue dialogue;
 
 
     [SerializeField]
@@ -48,10 +48,10 @@ public class ScrollText : MonoBehaviour
     public void NextMessage() {
         if (isTextScrolling) {
             // Interrupt scrolling
-            SetText(messages[messageIndex]);
+            SetText(dialogue.messages[messageIndex]);
             // charIndex = messages[messageIndex].Length;
             StopAdvancing();
-        } else if (messageIndex < messages.Length - 1) {
+        } else if (messageIndex < dialogue.messages.Length - 1) {
             // Start coroutines
             charIndex = 0;
             
@@ -86,7 +86,7 @@ public class ScrollText : MonoBehaviour
         
         isTextScrolling = true;
         
-        while (charIndex < messages[messageIndex].Length) {
+        while (charIndex < dialogue.messages[messageIndex].Length) {
             
             // Wait delay
             yield return new WaitForSeconds(characterDelay);
@@ -96,13 +96,13 @@ public class ScrollText : MonoBehaviour
             /* Add whole ass tag at once if there is a tag here please
              * Note: I am going to break it if there is an incomplete tag
              */ 
-            if (messages[messageIndex][charIndex-1] == '<') {
-                while (messages[messageIndex][charIndex-1] != '>') {
+            if (dialogue.messages[messageIndex][charIndex-1] == '<') {
+                while (dialogue.messages[messageIndex][charIndex-1] != '>') {
                     charIndex++;
                 }
             }
 
-            SetText(messages[messageIndex].Substring(0, charIndex));
+            SetText(dialogue.messages[messageIndex].Substring(0, charIndex));
         }
         
         StopAdvancing();
