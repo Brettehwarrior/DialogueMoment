@@ -6,26 +6,33 @@ using TMPro;
 
 // Hey Trent check this out this is what you want probably: https://github.com/mixandjam/AC-Dialogue/blob/master/Assets/TMP_Animated/Runtime/TMP_Animated.cs
 
+[RequireComponent(typeof(AudioSource))]
 public class ScrollText : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI text;
 
     [SerializeField]
-    [TextArea(15,20)]
+    [TextArea(4,4)]
     private string[] messages;
 
 
     [SerializeField]
     private float characterDelay = 0.1f;
 
+    [Header("More features")]
+    [SerializeField]
+    private DialogueAudio dialogueAudio;
+
     private int messageIndex;
     private int charIndex;
 
     private Coroutine activeTextCoroutine;
+    private bool isTextScrolling;
+
 
     private void Start() {
-        messageIndex = 0;
+        messageIndex = -1; // Always advances before using
     }
 
     private void Update() {
@@ -33,21 +40,29 @@ public class ScrollText : MonoBehaviour
             NextMessage();
     }
 
+
+
     /// <summary>
     /// Advance to next message I guess
     /// </summary>
     public void NextMessage() {
-        if (messageIndex >= messages.Length - 1)
-            return;
-
-        charIndex = 0;
-        
-        if (activeTextCoroutine != null) {
-            StopCoroutine(activeTextCoroutine);
+        if (isTextScrolling) {
+            // Interrupt scrolling
+            SetText(messages[messageIndex]);
+            // charIndex = messages[messageIndex].Length;
+            StopAdvancing();
+        } else if (messageIndex < messages.Length - 1) {
+            // Start coroutines
+            charIndex = 0;
+            
             messageIndex++;
+            activeTextCoroutine = StartCoroutine("AdvanceText");
+
+            if (dialogueAudio != null)
+                dialogueAudio.StartSounds();
+            
         }
         
-        activeTextCoroutine = StartCoroutine("AdvanceText");
     }
 
     /// <summary>
@@ -58,8 +73,19 @@ public class ScrollText : MonoBehaviour
         text.text = newText;
     }
 
+    public void StopAdvancing() {
+        isTextScrolling = false;
+        StopCoroutine(activeTextCoroutine);
+
+        if (dialogueAudio != null)
+            dialogueAudio.StopSounds();
+    }
+
 
     private IEnumerator AdvanceText() {
+        
+        isTextScrolling = true;
+        
         while (charIndex < messages[messageIndex].Length) {
             
             // Wait delay
@@ -78,5 +104,7 @@ public class ScrollText : MonoBehaviour
 
             SetText(messages[messageIndex].Substring(0, charIndex));
         }
+        
+        StopAdvancing();
     }
 }
