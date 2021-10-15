@@ -12,7 +12,6 @@ public class ScrollText : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI text;
-
     [SerializeField]
     private Dialogue dialogue;
 
@@ -22,7 +21,7 @@ public class ScrollText : MonoBehaviour
 
     [Header("More features")]
     [SerializeField]
-    private DialogueAudio dialogueAudio;
+    private DialogueAudioOld dialogueAudio;
 
     private int messageIndex;
     private int charIndex;
