@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatedTMP: {fileID: 2126197658}
-  dialogue: {fileID: 11400000, guid: 1f4f0943ee97bc14d84458d883ef7512, type: 2}
+  dialogue: {fileID: 11400000, guid: 9f949f5b2bbc2f4429b9dc526728bbc7, type: 2}
 --- !u!4 &568639459
 Transform:
   m_ObjectHideFlags: 0
@@ -1371,7 +1371,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This text should be replaced
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

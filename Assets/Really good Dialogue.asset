@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c29bb3ea70490b749a12a691d25fbd72, type: 3}
   m_Name: Really good Dialogue
   m_EditorClassIdentifier: 
-  messages: []
+  messages:
+  - fellas
+  - after years of research and development
+  - i have done it
+  - i have put myself into a <#d6a922>unity game
   talkSounds: []
